@@ -1,0 +1,42 @@
+body{
+    font-family: Arial, sans-serif;
+    background-color: rgba(255, 255, 255, 0.897);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container {
+    text-align: center;
+    width: 70%;
+}
+.stopwatch {
+    width: 55%;
+    background-color: rgba(232, 222, 222, 0.795);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.155);
+    padding: 20px;
+    display: inline-block;
+}
+.time {
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+.controls button {
+    padding: 10px 15px;
+    color:rgba(255, 255, 255, 0.902);
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+}
+#start{
+    background-color: rgba(0, 128, 0, 0.71);
+}
+#stop{
+    background-color: rgba(0, 0, 255, 0.726);
+}
+#reset{
+    background-color: rgba(255, 0, 0, 0.692);
+}
