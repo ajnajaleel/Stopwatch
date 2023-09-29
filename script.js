@@ -1,40 +1,36 @@
+let interval;
+let running = false;
+let time = 0;
 const timeDisplay = document.querySelector('.time');
 const startButton = document.getElementById('start');
 const stopButton = document.getElementById('stop');
 const resetButton = document.getElementById('reset');
-startButton.addEventListener('click', startTimer);
-stopButton.addEventListener('click', stopTimer);
-resetButton.addEventListener('click', resetTimer);
-let startTime;
-let interval;
-function startTimer() {
-    if (!startTime) {
-        startTime = Date.now();
-        interval = setInterval(updateTime, 10);
+function updateTime() {
+    time++;
+    const hours = Math.floor(time / 3600).toString().padStart(2, '0');
+    const minutes = Math.floor((time % 3600) / 60).toString().padStart(2, '0');
+    const seconds = (time % 60).toString().padStart(2, '0');
+    timeDisplay.textContent = `${hours}:${minutes}:${seconds}`;
+}
+startButton.addEventListener('click', () => {
+    if (!running) {
+        interval = setInterval(updateTime, 1000);
         startButton.textContent = 'Pause';
     } else {
         clearInterval(interval);
-        startTime = null;
         startButton.textContent = 'Resume';
     }
-}
-function stopTimer() {
+    running = !running;
+});
+stopButton.addEventListener('click', () => {
     clearInterval(interval);
-    startTime = null;
     startButton.textContent = 'Start';
-}
-function resetTimer() {
+    running = false;
+});
+resetButton.addEventListener('click', () => {
     clearInterval(interval);
-    startTime = null;
-    timeDisplay.textContent = '00:00:00';
     startButton.textContent = 'Start';
-}
-function updateTime() {
-    const currentTime = Date.now() - startTime;
-    const hours = Math.floor(currentTime / 3600000);
-    const minutes = Math.floor((currentTime % 3600000) / 60000);
-    const seconds = Math.floor((currentTime % 60000) / 1000);
-    const milliseconds = Math.floor(currentTime % 1000);
-    const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-    timeDisplay.textContent = timeString;
-}
+    running = false;
+    time = 0;
+    updateTime();
+});
