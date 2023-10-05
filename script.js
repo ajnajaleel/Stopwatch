@@ -3,7 +3,6 @@ let running = false;
 let time = 0;
 const timeDisplay = document.querySelector('.time');
 const startButton = document.getElementById('start');
-const stopButton = document.getElementById('stop');
 const resetButton = document.getElementById('reset');
 function updateTime() {
     time++;
@@ -22,15 +21,10 @@ startButton.addEventListener('click', () => {
     }
     running = !running;
 });
-stopButton.addEventListener('click', () => {
-    clearInterval(interval);
-    startButton.textContent = 'Start';
-    running = false;
-});
 resetButton.addEventListener('click', () => {
     clearInterval(interval);
     startButton.textContent = 'Start';
     running = false;
     time = 0;
-    updateTime();
+    timeDisplay.textContent = '00:00:00';
 });
